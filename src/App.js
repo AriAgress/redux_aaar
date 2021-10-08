@@ -1,5 +1,7 @@
 import React from "react";
 import './App.css'
+import {Provider} from 'react-redux'
+import store from './redux/store'
 
 import AppBody from "./components/AppStyles";
 import Products from './components/Products';
@@ -7,9 +9,11 @@ import Products from './components/Products';
 function App() {
 
   return (
-    <AppBody className="App" >
-      <Products />
-    </AppBody>
+    <Provider store={store} >
+      <AppBody className='App'>
+        <Products />
+      </AppBody>
+    </Provider>
   );
 }
 
