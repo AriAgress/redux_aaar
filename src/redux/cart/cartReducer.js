@@ -1,5 +1,5 @@
-import { INCREMENT } from './productTypes';
-import { DECREMENT } from './productTypes';
+import { INCREMENT } from './cartTypes';
+import { DECREMENT } from './cartTypes';
 
 const initialState = {
   items: [],

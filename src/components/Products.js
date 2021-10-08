@@ -1,46 +1,54 @@
-import React from 'react'
-import { useEffect, useState } from 'react';
-import API from '../routes/apiRouts';
-import styled from 'styled-components'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchProducts } from '../redux/product/productAction';
+import styled from 'styled-components';
 
 const Container = styled.div`
-display: flex;
-flex-flow: row wrap;
-justify-content: center;
-align-content: center;
-`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+`;
 
 const ProductContainer = styled.div`
-margin: 1rem;
-`
+  margin: 1rem;
+`;
 
 const Image = styled.img`
-height: 100px;
-width: 100px;
-`
+  height: 100px;
+  width: 100px;
+`;
 
-const Products = () => {
-  const [products, setProducts] = useState([]);
-
+const Products = ({ fetchProducts, productData }) => {
   useEffect(() => {
-    API.GetAllProducts()
-      .then(res => {
-        console.log('PRODUCTS ===>', res);
-        setProducts([...products, ...res]);
-      })
-      .catch(err => console.log(err));
+    fetchProducts();
   }, []);
 
-  return (
+  return productData.loading ? (
+    <h2>Loading</h2>
+  ) : (
     <Container>
-      {products &&
-        products.map(item => (
-          <ProductContainer key={item.id}>
-            <Image src={item.image} />
+      {productData &&
+        productData.item &&
+        productData.item.map(map_item => (
+          <ProductContainer key={map_item.id}>
+            <Image src={map_item.image} />
           </ProductContainer>
         ))}
     </Container>
   );
-}
+};
 
-export default Products
+const mapStateToProps = state => {
+  return {
+    productData: state.products,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchProducts: () => dispatch(fetchProducts()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

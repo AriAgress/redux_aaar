@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { applyMiddleware } from 'redux';
 import {
   FETCH_PRODUCT_REQUEST,
   FETCH_PRODUCT_SUCCESS,
@@ -11,10 +12,10 @@ export const fetchProductRequest = () => {
   };
 };
 
-export const fetchProductSuccess = (product) => {
+export const fetchProductSuccess = (item) => {
   return {
     type: FETCH_PRODUCT_SUCCESS,
-    payload: product,
+    payload: item,
   };
 };
 

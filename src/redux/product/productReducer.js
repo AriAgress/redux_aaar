@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   loading: false,
-  product: [],
+  item: [],
   error: '',
 };
 
@@ -22,7 +22,7 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        product: action.payload,
+        item: action.payload,
         error: '',
       };
 
@@ -30,7 +30,7 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        product: [],
+        item: [],
         error: action.payload,
       };
 
