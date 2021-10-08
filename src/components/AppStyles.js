@@ -4,7 +4,7 @@ const AppBody = styled.div`
   min-height: 100vh;
   /* display: flex;
   flex-flow: column wrap; */
-background: coral;
+background: black;
 
 `;
 

@@ -25,7 +25,7 @@ const Products = () => {
   useEffect(() => {
     API.GetAllProducts()
       .then(res => {
-        console.log('PRODUCTS===>', res);
+        console.log('PRODUCTS ===>', res);
         setProducts([...products, ...res]);
       })
       .catch(err => console.log(err));
