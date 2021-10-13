@@ -1,5 +1,4 @@
-import { INCREMENT } from './cartTypes';
-import { DECREMENT } from './cartTypes';
+import { ADD_PRODUCT, REMOVE_PRODUCT, CLEAR_ITEMS } from './cartTypes';
 
 const initialState = {
   items: [],
@@ -7,18 +6,22 @@ const initialState = {
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case INCREMENT:
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        items: action.payload
+      };
+    case REMOVE_PRODUCT:
       return {
         ...state,
         items: action.payload,
       };
-    case DECREMENT:
+    case CLEAR_ITEMS:
       return {
-        ...state,
-        items: action.payload,
+        items: [],
       };
-    default:
-      return state;
+      default:
+        return state;
   }
 };
 

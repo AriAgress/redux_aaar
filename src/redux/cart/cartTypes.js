@@ -1,2 +1,3 @@
-export const INCREMENT = 'INCREMENT'
-export const DECREMENT = 'DECREMENT'
+export const ADD_PRODUCT = 'ADD_PRODUCT'
+export const REMOVE_PRODUCT = 'REMOVE_ITEM'
+export const CLEAR_ITEMS = 'CLEAR_ITEMS'
