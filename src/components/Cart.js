@@ -1,30 +1,54 @@
-// import React from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import {
-//   addProduct,
-//   removeProduct,
-//   clearItems,
-// } from '../redux/cart/cartActions';
+import React from 'react';
 
-// const Cart = () => {
-//   const add = useSelector(state => state.cart.addProduct);
-//   const remove = useSelector(state => state.cart.removeProduct);
-//   const clearAll = useSelector(state => state.cart.clearItems);
+import {
+	addProduct,
+	removeProduct,
+	clearItems,
+} from '../redux/cart/cartActions';
+import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
+const Container = styled.div`
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-content: center;
+	width: 100vw;
+	height: 20vh;
+`;
+const Card = styled.div`
+	display: flex;
+	flex-flow: column wrap;
+`;
+const Cart = ({ title, image, price, id }) => {
+	const cartItem = useSelector(state => state.cart.items);
+	const dispatch = useDispatch();
+	const onClick = () => {
+		const singleItem = {
+			title: title,
+			image: image,
+			price: price,
+			id: id,
+		};
+		// const newItems = [...cartItem, singleItem];
+		// dispatch(addProduct(newItems));
 
-//   const dispatch = useDispatch();
+		const deleteItems = [...cartItem, singleItem];
+		dispatch(removeProduct(cartItem.item));
+	};
 
-//   return (
-//     <>
-//       <div>
-//         <button onClick={() => dispatch(addProduct())}>Add Product</button>
-//       </div>
-//       <div>
-//         <button onClick={() => dispatch(removeProduct())}>
-//           Remove Product
-//         </button>
-//       </div>
-//     </>
-//   );
-// };
+	return (
+		<Container>
+			<Card>
+				<p>{id}</p>
+				<h1>{title}</h1>
 
-// export default Cart;
+				<img style={{ height: '250px', width: '150px' }} src={image} alt='' />
+				<p>{price}</p>
+
+				<button onClick={onClick}>remove</button>
+			</Card>
+		</Container>
+	);
+};
+
+export default Cart;
